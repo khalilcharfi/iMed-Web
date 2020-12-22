@@ -5,6 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AuthService } from 'app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -38,17 +40,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
-
+  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userName: string;
+  profileImg: any;
+  connection: any;
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService,
+    private authService: AuthService,
+    public router: Router
+  ) {
+    this.getUserAdmin();
   }
 
   ngOnInit() {
+
+    this.connection = this.authService.urlDomain;
+    this.menuService.onItemClick().subscribe((event) => {
+      this.onContecxtItemSelection(event.item.title);
+    });
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
@@ -71,6 +84,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(themeName => this.currentTheme = themeName);
   }
 
+
+  async getUserAdmin() {
+    this.userName = localStorage.getItem('user');
+
+
+    this.authService.getUserData().subscribe((res: any) => {
+      if (res[0].image) {
+        this.profileImg = `${this.connection}/profile/`+ res[0].image;
+      } else {
+        this.profileImg = "./assets/images/profile.png";
+      }
+
+      console.log(res)
+    });
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -90,5 +118,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  onContecxtItemSelection(title) {
+    if (title === "Log out") {
+      this.authService.logout();
+      this.router.navigateByUrl('/login');
+    } else if (title === "Users") {
+      this.router.navigate(['./../../../admin/users']);
+    } else {
+      // this.router.navigate(['./../../../admin/profile']);
+    }
   }
 }

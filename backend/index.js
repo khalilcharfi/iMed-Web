@@ -103,7 +103,7 @@ app.use((req, res, next) => {
 
 // file path
 // app.use('/donations', express.static(path.join(__dirname, './uploads/donations')));
-// app.use('/profile', express.static(path.join(__dirname, './uploads/profile')));
+app.use('/profile', express.static(path.join(__dirname, './uploads/profile')));
 // app.use('/news-feeds', express.static(path.join(__dirname, './uploads/news-feeds')));
 
 app.use('/users', require('./routes/users'));
