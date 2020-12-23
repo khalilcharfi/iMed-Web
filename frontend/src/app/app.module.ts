@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
-import { ThemeModule } from './@theme/theme.module';
+// import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -38,7 +39,8 @@ import {
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
-    ThemeModule.forRoot(),
+    // ThemeModule.forRoot(),
+    NbThemeModule.forRoot({ name: 'default' })
   ],
   bootstrap: [AppComponent],
 })

@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header>
-    Patients List
+    Rescuer List
   </nb-card-header>
   <nb-card-body>
     <table class="table table-striped table-bordered table-hover">
@@ -8,21 +8,21 @@
         <tr class="bg-primary text-white">
           <td>#</td>
           <td>Date Added</td>
-          <td>Patient</td>
+          <td>Rescuer</td>
           <td>Address</td>
-          <td>Email.</td>
-          <td>Contact No.</td>
+          <td>Plate No.</td>
+          <td>Drivers License No.</td>
           <td>Action</td>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of patients; let i = index">
+        <tr *ngFor="let data of rescuers; let i = index">
           <td>{{ i + 1}}</td>
           <td>{{data.dateAdded | date: 'mediumDate'}}</td>
           <td>{{data.name | titlecase}}</td>
           <td>{{data.address | titlecase}}</td>
-          <td>{{data.email}}</td>
-          <td>{{data.contact}}</td>
+          <td>{{data.plateNo}}</td>
+          <td>{{data.driverLicenseNo}}</td>
           <td><button class="btn btn-success btn-sm">View</button></td>
         </tr>
       </tbody>

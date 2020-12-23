@@ -1,74 +1,67 @@
-<div class="col-lg-12">
-  <div class="row" *ngIf="authorized">
-    <div class="col">
-      <nb-card class="bg-primary cardSummary">
-        <nb-card-body class="row">
+<div class="col-sm-12">
+  <div class="row">
+    <div class="col-sm-6">
+      <nb-card class="bg-primary">
+        <nb-card-body>
+          <div class="row">
             <div class="col-4">
-                <i class="fa fa-home icon"></i>
+              <i class="fa fa-users icon"></i>
             </div>
             <div class="col-8">
-              <span class="m-0">Shelters</span>
-              <h5 style="color: #ffffff;">1000 <small> In Total</small></h5>
+              <span class="m-0">Total Patients</span>
+              <h5>1000 <small> In Total</small></h5>
             </div>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>
-    <div class="col">
-      <nb-card class="bg-danger cardSummary">
-        <nb-card-body class="row">
+    <div class="col-sm-6">
+      <nb-card class="bg-secondary">
+        <nb-card-body>
+          <div class="row">
             <div class="col-4">
-                <i class="fa fa-phone icon"></i>
+              <i class="fa fa-ambulance icon"></i>
             </div>
             <div class="col-8">
-              <span class="m-0">Emergency Contact</span>
-              <h5 style="color: #ffffff;"> 10 <small> In Total</small></h5>
+              <span class="m-0">Total Rescuer</span>
+              <h5>1000 <small> In Total</small></h5>
             </div>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>
   </div>
-  <div class="row" *ngIf="authorized">
-    <div class="col">
-      <nb-card class="bg-success cardSummary">
-        <nb-card-body class="row">
+  <div class="row">
+    <div class="col-sm-6">
+      <nb-card class="bg-info">
+        <nb-card-body>
+          <div class="row">
             <div class="col-4">
-                <i class="fa fa-map icon"></i>
+              <i class="fa fa-phone icon"></i>
             </div>
             <div class="col-8">
-              <span class="m-0">Earthquake</span>
-              <h5 style="color: #ffffff;">10 <small> This Month</small></h5>
+              <span class="m-0">Total Accepted Rescue</span>
+              <h5>1000 <small> In Total</small></h5>
             </div>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>
-    <div class="col">
-      <nb-card class="bg-info cardSummary">
-        <nb-card-body class="row">
+    <div class="col-sm-6">
+      <nb-card class="bg-danger">
+        <nb-card-body>
+          <div class="row">
             <div class="col-4">
-                <i class="fa fa-credit-card icon"></i>
+              <i class="fa fa-ban icon"></i>
             </div>
             <div class="col-8">
-              <span class="m-0">Donations Contact </span>
-              <h5 style="color: #ffffff;"> 10 <small> In Total</small></h5>
+              <span class="m-0">Total Rejected Rescue</span>
+              <h5>1000 <small> In Total</small></h5>
             </div>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>
   </div>
-  <div class="row" *ngIf="authorized">
-    <div class="col-12">
-      <nb-card>
-        <nb-card-header>
-          Total Earthquake Monthly
-        </nb-card-header>
-        <nb-card-body class="row">
-          <google-chart [data]="columnChart"></google-chart>
-        </nb-card-body>
-      </nb-card>
-    </div>
-  </div>
-  <nb-card *ngIf="!authorized" class="text-center p-5">
-    <i class="fas fa-exclamation-triangle fa-5x text-warning"></i>
-    <h1>You are not authorized to access this page.</h1>
-  </nb-card>
 </div>
+

@@ -4,6 +4,8 @@ import { NotFoundComponent } from 'app/pages/miscellaneous/not-found/not-found.c
 import { AdminComponent } from './admin.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { PatientComponent } from './patient/patient.component';
+import { RequestComponent } from './request/request.component';
+import { RescuerComponent } from './rescuer/rescuer.component';
 
 const routes: Routes = [
   {
@@ -18,46 +20,14 @@ const routes: Routes = [
         path: 'patient',
         component: PatientComponent,
       },
-      // {
-      //   path: 'quake',
-      //   component: QuakeComponent,
-      // },
-      // {
-      //   path: 'archive-quake',
-      //   component: ArchiveQuakeComponent,
-      // },
-      // {
-      //   path: 'shelter',
-      //   component: ShelterComponent,
-      // },
-      // {
-      //   path: 'archive-shelter',
-      //   component: ArchiveShelterComponent,
-      // },
-      // {
-      //   path: 'relief',
-      //   component: ReliefComponent,
-      // },
-      // {
-      //   path: 'archive-relief',
-      //   component: ArchiveReliefComponent,
-      // },
-      // {
-      //   path: 'emergency-contact',
-      //   component: EmergencyContactComponent,
-      // },
-      // {
-      //   path: 'donation',
-      //   component: DonationComponent,
-      // },
-      // {
-      //   path: 'users',
-      //   component: UsersComponent,
-      // },
-      // {
-      //   path: 'profile',
-      //   component: ProfileComponent,
-      // },
+      {
+        path: 'request',
+        component: RequestComponent,
+      },
+      {
+        path: 'rescuer',
+        component: RescuerComponent,
+      },
       {
         path: '',
         redirectTo: 'dashboard',

@@ -1,0 +1,75 @@
+<nb-card>
+  <nb-card-header>
+    Request List
+  </nb-card-header>
+  <nb-card-body class="mt-2">
+    <nb-tabset>
+      <nb-tab tabTitle="Pending">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr class="bg-primary text-white">
+              <td>#</td>
+              <td>Date Request</td>
+              <td>Patient</td>
+              <td>Address</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of requestAccepted; let i = index">
+              <td>{{ i + 1}}</td>
+              <td>{{data.dateAdded | date: 'medium'}}</td>
+              <td>{{data.name | titlecase}}</td>
+              <td>{{data.address | titlecase}}</td>
+              <td><button class="btn btn-success btn-sm">View History</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-tab>
+      <nb-tab tabTitle="Accepted">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr class="bg-primary text-white">
+              <td>#</td>
+              <td>Date Request</td>
+              <td>Patient</td>
+              <td>Address</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of requestAccepted; let i = index">
+              <td>{{ i + 1}}</td>
+              <td>{{data.dateAdded | date: 'medium'}}</td>
+              <td>{{data.name | titlecase}}</td>
+              <td>{{data.address | titlecase}}</td>
+              <td><button class="btn btn-success btn-sm">View History</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-tab>
+      <nb-tab tabTitle="Rejected">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr class="bg-primary text-white">
+              <td>#</td>
+              <td>Date Request</td>
+              <td>Patient</td>
+              <td>Address</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of requestAccepted; let i = index">
+              <td>{{ i + 1}}</td>
+              <td>{{data.dateAdded | date: 'medium'}}</td>
+              <td>{{data.name | titlecase}}</td>
+              <td>{{data.address | titlecase}}</td>
+              <td><button class="btn btn-success btn-sm">View History</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

@@ -9,8 +9,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Patients',
-    icon: 'file-text-outline',
+    icon: 'people-outline',
     link: '/admin/patient',
+    home: false,
+  },
+  {
+    title: 'Request',
+    icon: 'phone-call-outline',
+    link: '/admin/request',
+    home: false,
+  },
+  {
+    title: 'Rescuers',
+    icon: 'car-outline',
+    link: '/admin/rescuer',
     home: false,
   },
   // {
