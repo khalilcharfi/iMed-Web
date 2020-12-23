@@ -2,39 +2,34 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 // const GetID = require('../models/counters').GetID;
 const ObjectId = mongoose.Types.ObjectId;
-const lib = require('../library/newDate')
 const { ObjectID } = require('mongoose/lib/schema/index')
 
 // request schema
-const QuakeSchema = mongoose.Schema({
-    details: { type: String },
-    lat: { type: String, required: true },
-    lng: { type: String, required: true },
-    addedBy: { type: ObjectID, },
-    updateBy: { type: ObjectID },
-    intensity: { type: String, required: true },
-    magnitude: { type: String, required: true },
+const PatientSchema = mongoose.Schema({
+    name: { type: String, required: true },
+    contact: { type: String, required: true },
+    address: { type: String, required: true },
+    email: { type: String, required: true },
     dateAdded: { type: Number },
-    dateUpdated: { type: Number },
-    archive: { type: Number, default: 0 },
+    medicalHistory: []
 });
 
-const Quake = module.exports = mongoose.model('Quake', QuakeSchema);
+const Patient = module.exports = mongoose.model('Patient', PatientSchema);
 
 
 
-module.exports.addQuake = function (newData, cb) {
-    newData.dateAdded = new Date().getTime();
-    Quake.create(newData, (err, response) => {
+module.exports.addShelter = function (newShelter, cb) {
+    newShelter.dateAdded = new Date().getTime();
+    Shelter.create(newShelter,(err, response) => {  
         if (response) {
-            return cb({ success: true, message: "Quake added successfully.", data: response });
+            return cb({ success: true, message: "Shelter added successfully.", data: response });
         } else {
-            return cb({ success: false, message: err.message });
+            return cb({ success: false, message: err.message});
         }
     });
 }
-module.exports.getQuake = function (req, cb) {
-    Quake.aggregate([
+module.exports.getShelter = function (req, cb) {
+    Shelter.aggregate([
         {
             $match: {
                 archive: 0
@@ -49,9 +44,26 @@ module.exports.getQuake = function (req, cb) {
             return cb({ success: true, data: res });
         }
     });
-}
-module.exports.getArchiveQuake = function (req, cb) {
-    Quake.aggregate([
+} 
+module.exports.getShelterDetails = function (req, cb) {
+    Shelter.aggregate([
+        {
+            $match: {
+                archive: 0,_id:ObjectId(req._id)
+            }
+        },
+        {
+            $sort: { dateAdded: -1}
+        }
+
+    ], (err, res) => {
+        if (err) { return cb({ sucess: false, message: err.message }); } else {
+            return cb({ success: true, data: res });
+        }
+    });
+} 
+module.exports.getArchiveShelter = function (req, cb) {
+    Shelter.aggregate([
         {
             $match: {
                 archive: 1
@@ -66,9 +78,10 @@ module.exports.getArchiveQuake = function (req, cb) {
             return cb({ success: true, data: res });
         }
     });
-}
-module.exports.updateQuake = function (data, cb) {
-    Quake.updateOne(
+} 
+
+module.exports.updateShelter = function (data, cb) {
+    Shelter.updateOne(
         {
             _id: ObjectId(data._id)
         },
@@ -76,23 +89,22 @@ module.exports.updateQuake = function (data, cb) {
             $set: {
                 lat: data.lat,
                 lng: data.lng,
-                updateBy: data.updateBy,
-                intensity: data.intensity,
-                magnitude: data.magnitude,
+                updateBy: data.updatedBy,
+                address: data.address,
                 details: data.details,
                 dateUpdated: new Date().getTime()
             }
         }, { upsert: true },
         (err, response) => {
             if (response) {
-                return cb({ success: true, message: "Earthquake update successfully.", data: response });
+                return cb({ success: true, message: "Shelter update successfully.", data: response });
             } else {
                 return cb({ success: false, message: err.message });
             }
         });
 }
 module.exports.updatearchive = function (data, cb) {
-    Quake.updateOne(
+    Shelter.updateOne(
         {
             _id: ObjectId(data.id)
         },

@@ -5,32 +5,22 @@ const lib = require('../library/newDate');
 const server = require('../index')
 
 // request schema
-const NewsFeedsSchema = mongoose.Schema({
-    addedBy: { type: ObjectId, required: true },
-    caption: { type: String, required: true },
-    images: [{
-        fileName: { type: String, required: true },
-        alt: { type: String, required: true },
-    }],
-    comments: [
-        {
-            byId: { type: ObjectId, required: true },
-            message: { type: String },
-            dateAdded: { type: Date },
-            commentStatus: { type: Number, default: 1 },
-        }
-    ],
+const RescuerFeedsSchema = mongoose.Schema({
+    name: { type: String, required: true },
+    plateNo: { type: String, required: true },
+    address: { type: String, required: true },
+    driversLicense: { type: String, required: true },
     dateAdded: { type: Date, required: true },
-    postStatus: { type: Number, default: 1 },
+    status: { type: Number, default: 1 },
 });
 
-const newsFeeds = module.exports = mongoose.model('News-Feeds', NewsFeedsSchema);
+const Rescuer = module.exports = mongoose.model('Rescuer', RescuerFeedsSchema);
 
 
 
 module.exports.addPost = function (newPost, cb) {
     newPost.dateAdded = lib.newDateTime();
-    newsFeeds.create(newPost, (err, response) => {
+    Rescuer.create(newPost, (err, response) => {
         if (response) {
             return cb({ success: true, message: "Post added successfully.", data: response });
         } else {

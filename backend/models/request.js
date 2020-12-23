@@ -5,19 +5,25 @@ const ObjectId = mongoose.Types.ObjectId;
 const { ObjectID } = require('mongoose/lib/schema/index')
 
 // request schema
-const ShelterSchema = mongoose.Schema({
-    details: { type: String, required: true },
-    lat: { type: String, required: true },
-    lng: { type: String, required: true },
-    addedBy: { type: ObjectID, },
-    updateBy: { type: ObjectID },
-    dateAdded: { type: Number },
-    dateUpdated: { type: Number },
-    address: { type: String, required:  true },
-    archive: { type: Number, default: 0 },
+const PatientSchema = mongoose.Schema({
+    rescuerName: { type: String, required: true },
+    rescuerId: { type: ObjectID, required: true },
+    rescuerAddress: { type: String, required: true },
+    rescuerLat: { type: String, required: true },
+    rescuerLng: { type: String, required: true },
+    patientName: { type: String, required: true },
+    patientId: { type: ObjectID, required: true },
+    patientAddress: { type: String, required: true },
+    patientLat: { type: String, required: true },
+    patientLng: { type: String, required: true },
+    dateRequested: { type: Number },
+    dateAccepted: { type: Number },
+    dateRejected: { type: Number }, 
+    dateCompleted: { type: Number }, 
+    status: { type: Number, default: 0 }, 
 });
 
-const Shelter = module.exports = mongoose.model('Shelter', ShelterSchema);
+const Patient = module.exports = mongoose.model('Patient', PatientSchema);
 
 
 
